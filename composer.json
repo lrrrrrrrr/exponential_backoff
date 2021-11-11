@@ -1,5 +1,5 @@
 {
-    "name": "nsleta/exponentialBackoff",
+    "name": "nsleta/exponential_backoff",
     "description": "",
     "keywords": ["retry", "exponentialbackoff"],
     "homepage": "https://github.com/nsleta/backoff",
