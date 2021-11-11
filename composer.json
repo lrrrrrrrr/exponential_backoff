@@ -1,0 +1,30 @@
+{
+    "name": "nsleta/backoff",
+    "description": "",
+    "keywords": ["retry", "exponentialbackoff"],
+    "homepage": "https://github.com/nsleta/backoff",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mykola Sleta",
+            "email": "nikolai.sleta@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {"Backoff\\": "src"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Backoff\\": "tests"}
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "phpstan": "vendor/bin/phpstan analyse"
+    }
+}
