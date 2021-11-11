@@ -2,7 +2,7 @@
     "name": "nsleta/exponential_backoff",
     "description": "",
     "keywords": ["retry", "exponentialbackoff"],
-    "homepage": "https://github.com/nsleta/backoff",
+    "homepage": "https://github.com/nsleta/exponential_backoff",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -18,10 +18,10 @@
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {
-        "psr-4": {"Backoff\\": "src"}
+        "psr-4": {"ExponentialBackoff\\": "src"}
     },
     "autoload-dev": {
-        "psr-4": {"Backoff\\": "tests"}
+        "psr-4": {"ExponentialBackoff\\": "tests"}
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

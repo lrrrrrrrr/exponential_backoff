@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Backoff;
+namespace ExponentialBackoff;
 
 
 use PHPUnit\Framework\TestCase;
 use \RuntimeException;
 
-class BackoffTest extends TestCase
+class RetryTest extends TestCase
 {
     protected $calls;
 
@@ -17,7 +17,7 @@ class BackoffTest extends TestCase
     }
 
     public function testCallWithOneAttempt() {
-        $backoff = new Backoff();
+        $backoff = new Retry();
         $backoff->setInterval(2);
         $backoff->setMaxAttempts(1);
         $this->expectException(\Exception::class);
@@ -26,7 +26,7 @@ class BackoffTest extends TestCase
 
 
     public function testCallWithNotSuitableExceptionType() {
-        $backoff = new Backoff();
+        $backoff = new Retry();
         $backoff->setInterval(2);
         $this->expectException(\Exception::class);
         $backoff->call($this->retryableFunction(), [RuntimeException::class]);
@@ -34,7 +34,7 @@ class BackoffTest extends TestCase
 
 
     public function testRetry() {
-        $backoff = new Backoff();
+        $backoff = new Retry();
         $backoff->setInterval(2);
 
         $this->assertEquals('done', $backoff->call($this->retryableFunction(), [\Throwable::class]));

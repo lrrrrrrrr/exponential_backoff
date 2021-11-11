@@ -1,8 +1,8 @@
 <?php
 
-namespace Backoff;
+namespace ExponentialBackoff;
 
-class Backoff
+class Retry
 {
     protected const INTERVAL = 2000;
     protected const MAX_ATTEMPTS = 3;
