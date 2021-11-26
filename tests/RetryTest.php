@@ -3,12 +3,13 @@
 
 namespace ExponentialBackoff;
 
-
+use Closure;
 use PHPUnit\Framework\TestCase;
 use \RuntimeException;
 
 class RetryTest extends TestCase
 {
+    /** @var int */
     protected $calls;
 
     protected function setUp(): void
@@ -16,7 +17,8 @@ class RetryTest extends TestCase
         $this->calls = 1;
     }
 
-    public function testCallWithOneAttempt() {
+    public function testCallWithOneAttempt(): void
+    {
         $backoff = new Retry();
         $backoff->setInterval(2);
         $backoff->setMaxAttempts(1);
@@ -24,22 +26,21 @@ class RetryTest extends TestCase
         $backoff->call($this->retryableFunction(), [\Throwable::class]);
     }
 
-
-    public function testCallWithNotSuitableExceptionType() {
+    public function testCallWithNotSuitableExceptionType(): void
+    {
         $backoff = new Retry();
         $backoff->setInterval(2);
         $this->expectException(\Exception::class);
         $backoff->call($this->retryableFunction(), [RuntimeException::class]);
     }
 
-
-    public function testRetry() {
+    public function testRetry(): void
+    {
         $backoff = new Retry();
         $backoff->setInterval(2);
 
         $this->assertEquals('done', $backoff->call($this->retryableFunction(), [\Throwable::class]));
     }
-
 
 //    public function testInterval() {
 //        $backoff = new Backoff();
@@ -53,8 +54,8 @@ class RetryTest extends TestCase
 //        $this->assertEquals('done', $backoff->call($this->retryableFunction(), [\Throwable::class]));
 //    }
 
-
-    protected function retryableFunction() {
+    protected function retryableFunction(): Closure
+    {
         return function () {
             if ($this->calls < 3) {
                 $this->calls++;
