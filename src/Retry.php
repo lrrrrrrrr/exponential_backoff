@@ -20,9 +20,11 @@ class Retry
     }
 
     /**
+     * @param \Closure $retryableFunction
      * @param array<int, string> $exceptionTypes
      *
      * @return mixed
+     * @throws \Throwable
      */
     public function call(\Closure $retryableFunction, array $exceptionTypes)
     {
@@ -61,7 +63,9 @@ class Retry
     }
 
     /**
+     * @param object $object
      * @param array<int, string> $types
+     * @return bool
      */
     protected function checkIfObjectTypeInArray(object $object, array $types): bool
     {

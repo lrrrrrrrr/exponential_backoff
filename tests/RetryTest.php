@@ -42,8 +42,9 @@ class RetryTest extends TestCase
         $this->assertEquals('done', $backoff->call($this->retryableFunction(), [\Throwable::class]));
     }
 
-//    public function testInterval() {
-//        $backoff = new Backoff();
+//    public function testInterval(): void
+//    {
+//        $backoff = new Retry();
 //        $backoff->setMaxAttempts(3);
 //        $backoff->setInterval(2000);
 //
