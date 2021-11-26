@@ -7,7 +7,10 @@ class Retry
     protected const INTERVAL = 2000;
     protected const MAX_ATTEMPTS = 3;
 
+    /** @var int */
     protected $interval;
+
+    /** @var int */
     protected $maxAttempts;
 
     public function __construct()
@@ -16,6 +19,11 @@ class Retry
         $this->interval = static::INTERVAL;
     }
 
+    /**
+     * @param array<int, string> $exceptionTypes
+     *
+     * @return mixed
+     */
     public function call(\Closure $retryableFunction, array $exceptionTypes)
     {
         if ($this->maxAttempts <= 0) {
@@ -42,17 +50,20 @@ class Retry
         return null;
     }
 
-    public function setMaxAttempts($maxAttempts)
+    public function setMaxAttempts(int $maxAttempts): void
     {
         $this->maxAttempts = $maxAttempts;
     }
 
-    public function setInterval($interval)
+    public function setInterval(int $interval): void
     {
         $this->interval = $interval;
     }
 
-    protected function checkIfObjectTypeInArray($object, array $types)
+    /**
+     * @param array<int, string> $types
+     */
+    protected function checkIfObjectTypeInArray(object $object, array $types): bool
     {
         return (bool)array_filter($types, function ($type) use ($object) {
             return $object instanceof $type;

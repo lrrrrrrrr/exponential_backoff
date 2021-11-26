@@ -15,6 +15,7 @@
         "php": ">=7.1"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1",
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {
@@ -25,6 +26,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyse"
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon --no-progress --ansi"
     }
 }
